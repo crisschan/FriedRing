@@ -1,0 +1,4 @@
+include setup.py
+include requirement.txt
+include README.md
+include MANIFEST.in
