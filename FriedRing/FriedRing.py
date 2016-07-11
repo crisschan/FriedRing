@@ -32,8 +32,8 @@ class FriedRing(controller.Master):
 
         controller.Master.__init__(self, server)
         self.f2r = F2requests(self.fnamescript)
-    def shutdown(self):
-        self.shutdown()
+    #def shutdown(self):
+    #   self.shutdown()
     def run(self):
         try:
             return controller.Master.run(self)

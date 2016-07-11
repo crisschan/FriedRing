@@ -12,7 +12,7 @@
 	pip install -U multi-mechanize
 	pip install requests
 ###Windows
-	python -m pip install --upgrade pip(最支持版本8.1.2,多次运行可以升级到对应版本)
+	python -m pip install --upgrade pip(最支持版本8.1.2,多次运行可以升级到对应版本) []()
 	python -m pip install netlib pyopenssl pyasn1 urwid pil lxml flask
 	python -m pip install pyamf protobuf
 	python -m pip install pil
@@ -23,7 +23,7 @@
 	pip install requests
 ##安装FiredRing
 
-
+	pip install FiredRing
 
 ##使用FriedRing
 
@@ -62,3 +62,9 @@
 	
 ##查看结果
 结果在scriptsolution文件夹下的results里面，按照时间顺序生产的文件夹，里面有一个result.html，用浏览器打开就可以看到结果信息了。
+
+##修改历史
+- 1.0.0新建了项目
+- 1.0.1-1.0.3 因为打包没弄好折腾了几次
+- 1.0.4 修复了一个获取headers中有英文双引号会出现，导致到脚本出现语法错误。
+- 1.0.5 修复了一个1.0.4 打包错误

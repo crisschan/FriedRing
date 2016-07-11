@@ -14,36 +14,30 @@ from FriedRing import FriedRing
 #from FRun import FRun
 VERSION='1.0.0'
 def main():
-    opts, args = getopt.getopt(sys.argv[1:], "hpr:w:")
+    opts, args = getopt.getopt(sys.argv[1:], "hp:w:")
     strPort=8888
     fnamescript='__crisschan_TEMP'+str(time.time())
 
-    try:
-        for op, value in opts:
-            #if op == "-r":
 
-                FRun(str(value))
-                break
-            elif op == "-p":
-                strPort = value
-            elif op == "-w":
-                fnamescript = value
-            elif op == "-h":
-                #usage()
-                print '-p the proxy port\r\n-w the script_solution  name'
-                sys.exit()
-        else:
+    for op, value in opts:
+        if op == "-p":
+            strPort = value
+        elif op == "-w":
+            fnamescript = value
+        elif op == "-h":
+            #usage()
+            print '-p the proxy port\r\n-w the script_solution  name'
+            sys.exit()
 
-            config = proxy.ProxyConfig(
-                cadir=os.path.expanduser("~/.mitmproxy/"),
-                port=int(strPort)
-            )
-            server = proxy.ProxyServer(config)
-            print 'the porxy port is '+str(strPort)
-            m = FriedRing(server, fnamescript)
-            m.run()
-    except KeyboardInterrupt:
-        m.shutdown()
+
+    config = proxy.ProxyConfig(
+        cadir=os.path.expanduser("~/.mitmproxy/"),
+        port=int(strPort)
+    )
+    server = proxy.ProxyServer(config)
+    print 'the porxy port is '+str(strPort)
+    m = FriedRing(server, fnamescript)
+    m.run()
     '''
 
     usage = 'Usage: %prog <project name> [options]'
