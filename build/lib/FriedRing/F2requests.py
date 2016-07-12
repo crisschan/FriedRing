@@ -3,6 +3,9 @@
 '''
 author:Crisschan
 time:2016-7-1
+
+author:Crisschan
+time 2016-7-11 modi for the headers check the " to \"
 '''
 from mitmproxy.models.http import HTTPRequest
 from mitmproxy.models.http import HTTPResponse
@@ -18,12 +21,13 @@ class F2requests():
             self.__F2Get()
         else:
             self.__F2Post()
-    #insert the request host information
-    def __InsertHost(self):
-        self.fscript.write(self.__Insert8blank()+'######'+str(self.request.host)+'#######')
-    # insert the  time stamp of start
-    def __InsertTimeStampStart(self):
 
+    def __InsertHost(self):
+        # insert the request host information
+        self.fscript.write(self.__Insert8blank()+'######'+str(self.request.host)+'#######')
+        # insert the request host information
+    def __InsertTimeStampStart(self):
+        # insert the request host information
         self.__InsertBlankRow()
         self.__InsertHost()
         self.__InsertBlankRow()
@@ -31,31 +35,38 @@ class F2requests():
         self.fscript.write(str(self.request.timestamp_start))
 
         self.__InsertBlankRow()
-    #inser the time stamp of end
+
     def __InsertTimeStampEnd(self):
+        # inser the time stamp of end
         self.__InsertBlankRow()
         self.fscript.write(self.__Insert8blank()+'# end : ')
         self.fscript.write(str(self.request.timestamp_end))
 
         self.__InsertBlankRow()
-    #insert the global import
+
     def __InitScript(self):
+        # insert the global import
         strPreScript = '#!/usr/bin/env python\r\n'
         strPreScript=strPreScript+'#coding=utf-8\r\n'
         strPreScript=strPreScript+'import requests\r\nimport json\r\nimport time\r\n\r\ndef script():'
         self.fscript.write(strPreScript)
         self.__InsertBlankRow()
-    #insert a blank row to script
+
     def __InsertBlankRow(self):
+        # insert a blank row to script
         self.fscript.write('\r\n')
-    #insert the assert target point
+
     def __InserAssert(self):
+        # insert the assert target point
         self.__InsertBlankRow()
         self.fscript.write(self.__Insert8blank()+'#insert the assert or other check point    #exp. print r.text')
         self.__InsertBlankRow()
-    #insert the http header
+
     def __F2Header(self):
+        # insert the http header
+        # modi add the replace " to \"
         strT = str(self.request.headers)
+        strT= strT.replace('\"','\\\"')
         strT = '\"' + strT
         strT = strT.replace('\r\n', '\n')
         strT = strT.replace('\n', '","')

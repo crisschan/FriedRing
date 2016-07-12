@@ -4,7 +4,6 @@ requirement.txt
 setup.py
 FriedRing/Cfg.py
 FriedRing/F2requests.py
-FriedRing/FRun.py
 FriedRing/FriedRing.py
 FriedRing/__init__.py
 FriedRing/fr.py
