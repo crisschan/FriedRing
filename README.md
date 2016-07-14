@@ -25,7 +25,7 @@
 	pip install requests
 ##安装FiredRing
 
-	pip install FiredRing
+	pip install -U FiredRing
 
 ##使用FriedRing
 
