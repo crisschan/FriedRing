@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: FriedRing
-Version: 1.0.6
+Version: 1.0.7
 Summary: this is a FriedRing package for get http request and response.
 Home-page: http://blog.csdn.net/crisschan
 Author: CrissChan
@@ -80,6 +80,7 @@ Description: #FriedRing
         - 1.0.4 修复了一个获取headers中有英文双引号会出现，导致到脚本出现语法错误。
         - 1.0.5 修复了一个1.0.4 打包错误
         - 1.0.6 修复了之前版本中requirement中错误的引用
+        - 1.0.7 修复了一些requirement的错误版本
         
         
 Keywords: FriedRing python package
