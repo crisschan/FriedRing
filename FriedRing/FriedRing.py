@@ -30,7 +30,7 @@ class FriedRing(controller.Master):
         self.fnamescript=str(fscriptsolutionpath)+'/test_scripts/script.py'
         print 'script solution path(include script files, config files and results:'+str(fscriptsolutionpath)
 
-        controller.Master.__init__(self, server)
+        controller.Master.__init__(self,server)
         self.f2r = F2requests(self.fnamescript)
     #def shutdown(self):
     #   self.shutdown()
@@ -58,12 +58,10 @@ class FriedRing(controller.Master):
         print res.timestamp_end+'\n'
         print '--------------------------------------\n'
         '''
-'''if  __name__ == '__main__':
-    config = proxy.ProxyConfig(
-	    cadir = os.path.expanduser("~/.mitmproxy/"),
-        port=8888
-	)
+if  __name__ == '__main__':
+    opts = options.Options(cadir="~/.mitmproxy/", listen_port=8888)
+    config = proxy.ProxyConfig(opts)
     server = proxy.ProxyServer(config)
-    m = FriedRing(server)
-    m.run()'''
+    m = FriedRing(server,'/Users/chancriss/Desktop/WorkSpace/PythonSpace/FriedRingWorkSpace/')
+    m.run()
 
