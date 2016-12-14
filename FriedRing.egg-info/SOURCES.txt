@@ -5,7 +5,9 @@ setup.py
 FriedRing/Cfg.py
 FriedRing/F2requests.py
 FriedRing/FriedRing.py
+FriedRing/Img2Base64.py
 FriedRing/__init__.py
+FriedRing/alasRun.py
 FriedRing/fr.py
 FriedRing.egg-info/PKG-INFO
 FriedRing.egg-info/SOURCES.txt

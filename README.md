@@ -28,10 +28,10 @@
 	pip install -U FiredRing
 
 ##使用FriedRing
-
+####录制脚本
 首先，输入命令
 
-	 python fr.py -p 8888 -w scriptsolution
+	 fr -p 8888 -w scriptsolution
 	 
 -p 端口号，-w 测试脚本文件夹
 
@@ -50,13 +50,22 @@
 
 
 
-##运行脚本
-###Mac or Unbuntu
-在scriptsolution的父文件夹，执行
+####运行脚本
+#####Mac or Unbuntu
+在scriptsolution的父文件夹（也就是fr的workspace），执行
 
-	multimech-run scriptsolution
+	fr -r s 
+	
+	fr -r p
 
-###Windows
+参数说明：
+s - 线性执行当前父文件夹（workspace）下的全部性能测试场景
+p - 并发执行执行当前父文件夹（workspace）下的全部性能测试场景
+
+测试结果在当前父文件夹（workspace）下的Report文件夹内，分为并发测试报告（Report/Parralle_Result/文件夹下）和线性执行测试报告（Report/Serial_Result/)
+	
+
+#####Windows
 
 在scriptsolution的父文件夹，执行
 
@@ -66,5 +75,46 @@
 结果在scriptsolution文件夹下的results里面，按照时间顺序生产的文件夹，里面有一个result.html，用浏览器打开就可以看到结果信息了。
 ## 源代码地址
 	https://github.com/crisschan/FriedRing
+## config文件
+
+config文件在脚本的根目录，文件名字config.cfg
+格式如下：
+
+	[global]
+	run_time = 300
+	rampup = 300
+	results_ts_interval = 30
+	progress_bar = on
+	console_logging = off
+	xml_report = off
+	results_database = sqlite:///my_project/results.db
+	post_run_script = python my_project/foo.py
+	
+	[user_group-1]
+	threads = 30
+	script = vu_script1.py
+	
+	[user_group-2]
+	threads = 30
+	script = vu_script2.py
 
 
+其中[global]是场景全局配置[user_group-*]是各个脚本的配置
+
+
+Global Options
+
+
+
+	run_time: 测试时长 (seconds) [required]
+	rampup: vuser也就是虚拟用户的启动时间（例如100个vusers，rampup要是10秒的话，就是1秒钟启动10个vusers） (seconds) [required]
+	results_ts_interval: 结果分析采样点时间间隔 (seconds) [required]
+	progress_bar: 测试过程中console是不是显示执行进度条（on/off） [optional, default = on]
+	console_logging: 标准输出日志开关on/off [optional, default = off]
+	xml_report: xml格式报告开关on/off [optional, default = off]
+	results_database: 数据库连接字符串 [optional]
+	post_run_script: 测试完成后要调用的脚本[optional]
+User Groups
+
+	threads: 并发线程数（vusers）
+	script: 测试脚本
