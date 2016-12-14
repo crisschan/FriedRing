@@ -8,13 +8,15 @@ from mitmproxy import proxy
 from FriedRing import FriedRing
 from alasRun import alasRun
 
-VERSION = '2.0.1'
+VERSION = '2.0.2'
 
 
 def main():
-    opts, args = getopt.getopt(sys.argv[1:], "hpr:w:")
+    opts, args = getopt.getopt(sys.argv[1:], "hp:w:r:")
     strPort = 8888
-    fnamescript = '__crisschan_TEMP' + str(time.time())
+    fnamescript = '__crisschan_TEMP' + time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
+    op=''
+    sTargetRun='s'
     for op, value in opts:
         if op == "-p":
             strPort = value
