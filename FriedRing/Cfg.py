@@ -11,7 +11,10 @@ class Cfg():
     def __Setcfg(self):
         fcfgpath = str(self.fscriptsolutionpath) + '/config.cfg'
         fcfg = open(fcfgpath, 'w')
-        scfglines = '[global]\r\nrun_time = 30\r\nrampup = 0\r\nresults_ts_interval = 1\r\nprogress_bar = on\r\nconsole_logging = on\r\nxml_report = off\r\n\r\n[user_group - 1]\r\nthreads = 1\r\nscript = ' + self.curscenrioscript + 'v_user.py'
+        scfglines = '[global]\r\n' \
+                    'run_time = 30\r\n' \
+                    'rampup = 0\r\n' \
+                    'results_ts_interval = 1\r\nprogress_bar = on\r\nconsole_logging = on\r\nxml_report = off\r\n\r\n[user_group - 1]\r\nthreads = 1\r\nscript = ' + self.curscenrioscript + 'v_user.py'
         fcfg.write(scfglines)
         fcfg.close()
 

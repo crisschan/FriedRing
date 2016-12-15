@@ -248,25 +248,26 @@ class alasRun(object):
         self.endTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
         self._collectReport()
 
-    def _ParrallelConfig(self, sConfig):
+    def _ParrallelConfig(self, sConfig,run_time = 30,rampup = 0,results_ts_interval = 1,progress_bar = 'on',console_logging = 'on',xml_report = 'off',threads = 10):
         wf = open(sConfig, 'w')
-        wf.write('''[global]
-run_time = 30
-rampup = 0
-results_ts_interval = 1
-progress_bar = on
-console_logging = on
-xml_report = off\r\n''')
+        sGlobalCfg= '[global]\r\n' \
+                    'run_time = '+run_time+'\r\n' \
+                    'rampup = '+rampup+'\r\n' \
+                    'results_ts_interval = '+results_ts_interval+'\r\n' \
+                    'progress_bar = '+progress_bar+'\r\n' \
+                    'console_logging = '+console_logging+'\r\n' \
+                    'xml_report = '+xml_report+'\r\n'
+        wf.write(sGlobalCfg)
         i = 1
         # print self.scenariolist
         for scenariotemp in self.scenariolist:
             wf.write('[user_group - ' + str(i) + ']\r\n')
             i = i + 1
-            wf.write('threads = 1\r\n')
+            wf.write('threads = '+threads+'\r\n')
             wf.write('script = ' + scenariotemp + 'v_user.py\r\n')
         wf.close()
 
-    def _MergParralleScript(self):
+    def _MergParralleScript(self,run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads):
 
         sCurScenario = self.strCurPath + '/Parralle_Scenario/'
         if not os.path.exists(sCurScenario):
@@ -281,7 +282,7 @@ xml_report = off\r\n''')
             shutil.rmtree(sCruScenarioTestScript)
         os.makedirs(sCruScenarioTestScript)
         sConfig = sCurScenario + 'config.cfg'
-        self._ParrallelConfig(sConfig)
+        self._ParrallelConfig(sConfig,run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads)
         for ascenario in self.scenariolist:
 
             for root, dirs, files in os.walk(self.strCurPath + '/' + ascenario + '/test_scripts/'):
@@ -290,8 +291,8 @@ xml_report = off\r\n''')
                                     sCruScenarioTestScript + file)
                     # shutil.copyfile
 
-    def pRun(self):
-        self._MergParralleScript()
+    def pRun(self,run_time = 30,rampup = 0,results_ts_interval = 1,progress_bar = 'on',console_logging = 'on',xml_report = 'off',threads = 10):
+        self._MergParralleScript(run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads)
         if len(self.scenariolist) <= 0:
             print 'No Performance Test Scenario Under Current Test WorkSpace'
             return 0

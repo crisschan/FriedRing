@@ -63,6 +63,16 @@ s - 线性执行当前父文件夹（workspace）下的全部性能测试场景
 p - 并发执行执行当前父文件夹（workspace）下的全部性能测试场景
 
 测试结果在当前父文件夹（workspace）下的Report文件夹内，分为并发测试报告（Report/Parralle_Result/文件夹下）和线性执行测试报告（Report/Serial_Result/)
+
+fr -r p后的扩展参数：
+
+	 -t is runtime that duration of test (seconds)
+	 -u is rampup that duration of user rampup
+	 -i is resultinterval that time series interval for results analysis (seconds) 
+	 -b is progressbar that turn on/off console progress bar during test run default = on
+	 -c is consolelogging that turn on/off logging to stdout default = on
+	 -x is xmlreport that turn on/off xml/jtl report default = off
+	 -v is vusers that number of threads/virtual users default=10
 	
 
 #####Windows
