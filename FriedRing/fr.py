@@ -9,7 +9,7 @@ from mitmproxy import proxy
 from FriedRing import FriedRing
 from alasRun import alasRun
 
-VERSION = '2.0.5'
+VERSION = '2.0.6'
 #run_time = 30,rampup = 0,results_ts_interval = 1,progress_bar = 'on',console_logging = 'on',xml_report = 'off',threads = 10):
 
 def main():
@@ -34,23 +34,11 @@ def main():
         elif op in ("-r","--run"):
             sTargetRun = value
         elif op in ('-t',"--runtime"):
-            try:
-                run_time =int(value)
-            except:
-                print 'run_time must is int!'
-                return 0
+                run_time =value
         elif op in ("-u","--rampup"):
-            try:
-                rampup=int(value)
-            except:
-                print 'rampup must is int!'
-                return 0
+                rampup=value
         elif op in ("-i","--resultinterval"):
-            try:
-                results_ts_interval=int(value)
-            except:
-                print 'results_ts_interval must is int!'
-                return 0
+                results_ts_interval=value
         elif op in ("-b","--progressbar"):
             progress_bar=value
         elif op in ("-c","--consolelogging"):
@@ -58,11 +46,7 @@ def main():
         elif op in ("-x","--xmlreport"):
             xml_report=value
         elif op in ("-v","--vusers"):
-            try:
-                threads=int(value)
-            except:
-                print 'threads must is int!'
-                return 0
+                threads=value
         elif op in ("-h","--help"):
             # usage()
             print '-p the proxy port\r\n' \
@@ -77,7 +61,7 @@ def main():
                   '    -b is progressbar that turn on/off console progress bar during test run default = on\r\n' \
                   '    -c is consolelogging that turn on/off logging to stdout default = on\r\n' \
                   '    -x is xmlreport that turn on/off xml/jtl report default = off\r\n' \
-                  '    -v is vusers that number of threads/virtual users default=10\r\n'
+                  '    -v is vusers that number of threads/virtual users for each scenrio default=10\r\n'
 
             sys.exit()
 
@@ -85,21 +69,13 @@ def main():
         cadir=os.path.expanduser("~/.mitmproxy/"),
         port=int(strPort)
     )
-    print run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads
+    #print run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads
     if sTargetRun != 'c':
         ARun = alasRun()
         if sTargetRun == 's':
             ARun.sRun()
         elif sTargetRun == 'p':
-            if type(run_time)!=type(1):
-                print 'run_time must is int!'
-                return 0
-            if type(rampup)!=type(1):
-                print 'rampup must is int!'
-                return 0
-            if type(results_ts_interval)!=type(1):
-                print 'results_ts_interval must is int!'
-                return 0
+
             if progress_bar!='on' and progress_bar!='off':
                 print 'progress_bar only input on/off!'
                 return 0
@@ -109,9 +85,7 @@ def main():
             if xml_report!='on' and xml_report!='off':
                 print 'xml_report only input on/off!'
                 return 0
-            if type(threads)!=type(1):
-                print 'threads must is int!'
-                return 0
+
             ARun.pRun(run_time,rampup,results_ts_interval,progress_bar,console_logging,xml_report,threads)
         else:
             print '-r is the error input!!!!'

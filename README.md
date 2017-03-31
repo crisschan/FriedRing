@@ -72,7 +72,7 @@ fr -r p后的扩展参数：
 	 -b is progressbar that turn on/off console progress bar during test run default = on
 	 -c is consolelogging that turn on/off logging to stdout default = on
 	 -x is xmlreport that turn on/off xml/jtl report default = off
-	 -v is vusers that number of threads/virtual users default=10
+	 -v is vusers that number of threads/virtual users for each scenrio default=10
 	
 
 #####Windows
